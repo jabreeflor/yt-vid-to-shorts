@@ -4,6 +4,9 @@ work/
 *.webm
 *.vtt
 *.srt
+
+# Demo assets are tracked
+!docs/demo/*.mp4
 __pycache__/
 *.pyc
 .DS_Store
