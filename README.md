@@ -39,7 +39,7 @@ python3 scripts/parse_vtt.py "$WORK/captions.vtt" "$WORK/transcript.json"
 # ... write $WORK/proposals.json (see SKILL.md schema) ...
 python3 scripts/cut_clips.py "$WORK/proposals.json" "$WORK/video.mp4" "$WORK/clips"
 python3 scripts/render_gallery.py "$WORK/proposals.json" "$WORK/clips" "$WORK/meta.json" assets/gallery.html.template "$WORK/gallery.html"
-open "$WORK/gallery.html"
+python3 scripts/serve.py "$WORK"  # opens http://127.0.0.1:8723/gallery.html
 ```
 
 ## Layout

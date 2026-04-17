@@ -99,8 +99,11 @@ python3 "$SKILL_DIR/scripts/render_gallery.py" \
     "$SKILL_DIR/assets/gallery.html.template" \
     "$WORK/gallery.html"
 
-# 6. Open
-open "$WORK/gallery.html"
+# 6. Serve + open in browser. Do NOT `open` the file directly — Chrome's file://
+# policy silently breaks <video> playback (no audio, frozen frame).
+python3 "$SKILL_DIR/scripts/serve.py" "$WORK" &
+SERVE_PID=$!
+# Tell the user the URL; they stop the server with Ctrl+C or `kill $SERVE_PID`.
 ```
 
 ## Output contract
@@ -117,6 +120,7 @@ After the skill finishes, tell the user:
 - **ffmpeg fails on a specific clip**: usually the `end` exceeds the video duration — check `work/meta.json` `duration` and clamp.
 - **Source video is already ≤9:16 vertical**: `cut_clips.py` detects this via `ffprobe` and skips the crop filter automatically.
 - **Non-ASCII title**: `fetch.py` uses fixed filename templates (`video.mp4`, `captions.vtt`) so unicode titles don't break the pipeline.
+- **Videos look frozen / play with no audio**: you opened `gallery.html` directly via `file://`. Chrome blocks reliable `<video>` playback from local files. Run `scripts/serve.py` and open the `http://127.0.0.1:8723/gallery.html` URL it prints.
 
 ## Tips
 

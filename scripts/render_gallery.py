@@ -83,7 +83,9 @@ def main() -> None:
     clips = proposals.get("clips", [])
     cards_html = "\n".join(render_card(card_tpl, c, i) for i, c in enumerate(clips))
 
-    shell = template[: card_match.start()] + "{{CLIP_CARDS}}" + template[card_match.end():]
+    # Strip the CARD definition block entirely; cards get injected at the
+    # {{CLIP_CARDS}} placeholder that already exists in the template shell.
+    shell = template[: card_match.start()] + template[card_match.end():]
 
     title = meta.get("title") or proposals.get("source_title") or "Untitled"
     channel = meta.get("channel") or ""
