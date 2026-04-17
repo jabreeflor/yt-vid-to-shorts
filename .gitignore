@@ -1,0 +1,11 @@
+work/
+*.mp4
+*.mkv
+*.webm
+*.vtt
+*.srt
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+venv/
