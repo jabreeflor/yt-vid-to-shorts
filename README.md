@@ -2,47 +2,31 @@
 
 A Claude Code skill that turns any YouTube video into a gallery of AI-picked vertical short-form clips — each with a generated title, caption, hashtags, and its own download button — rendered as a styled HTML page.
 
-![gallery screenshot](./docs/demo/gallery_900.png)
+![gallery screenshot](./docs/demo/gallery_mcp_talk.png)
 
 ## Demo
 
-Ran against [`xQc — The Sykkuno Allegations Continue`](https://www.youtube.com/watch?v=LvseZAGAIjU). Click a thumbnail to play the clip (downloads from GitHub's CDN):
+Ran against [`The Future of MCP — David Soria Parra, Anthropic`](https://www.youtube.com/watch?v=v3Fr2JR47KA).
 
-### 01 · Bro Is Operating as a Real-Time Wizard
-xQc maps out the story's escalation one beat at a time — nothing, head, banana, awakening, long-range talk, hug, bang — and concludes the guy must be a mage. No way any man moves like this.
+### 01 · MCP Apps Ship Their Own Interface
+An MCP server can now ship a full application — not a plugin, not rendered on the fly, not hardcoded. Drop the server into Claude, ChatGPT, or VS Code and it just works. But to pull that off you need something most AI tooling skips: semantics.
 
-`#xqc` `#sykkuno` `#reaction` `#clips` `#shorts`
+`#mcp` `#agentbuilding` `#anthropic` `#aidev` `#shorts`
 
-[![clip 01 poster](./docs/demo/clip_01_thumb.jpg)](https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_01.mp4)
+### 02 · MCP Hit 110M Downloads Faster Than React
+110 million monthly downloads — and that's not just Anthropic's clients. OpenAI, Google ADK, LangChain, thousands of frameworks are all pulling MCP as a dependency. React took twice as long to hit this volume.
 
-https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_01.mp4
+`#mcp` `#openstandards` `#aiengineering` `#anthropic` `#shorts`
 
-### 02 · The 'Power Dynamic' Buzzword, Disassembled
-xQc takes apart one of the most lazily invoked phrases online — 'power dynamic' — and lays out what an actual, provable one would look like. If a guy has power and doesn't use it, he's just a guy.
+### 03 · Our Agents Still Suck — Here's the Fix
+Agents in 2026 aren't there yet — partly because of model limitations, but mostly because we haven't talked about the right techniques. The number-one thing to build: progressive discovery.
 
-`#xqc` `#powerdynamic` `#takes` `#discourse` `#shorts`
+`#agentbuilding` `#mcp` `#llmtips` `#aidev` `#shorts`
 
-[![clip 02 poster](./docs/demo/clip_02_thumb.jpg)](https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_02.mp4)
+### 04 · Stop Wrapping REST APIs in MCP
+Every time a REST-to-MCP conversion tool shows up, it's a bit cringe. Design for an agent the same way you'd design for a human — then give the model an execution environment so it can compose tools in code.
 
-https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_02.mp4
-
-### 03 · I'll Translate: 'I'm Sorry You Feel That Way'
-xQc decodes the corporate-apology phrase you've heard your entire life. He becomes the translator you didn't know you needed.
-
-`#xqc` `#corporatespeak` `#translation` `#apology` `#shorts`
-
-[![clip 03 poster](./docs/demo/clip_03_thumb.jpg)](https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_03.mp4)
-
-https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_03.mp4
-
-### 04 · Hate Streaming? Go Flip a Burger.
-xQc erupts on streamers who complain about the thing they chose to do. If you don't like it, don't do it — go to Burger King. Little bit of an ego. Okay.
-
-`#xqc` `#streamerdrama` `#motivation` `#rant` `#shorts`
-
-[![clip 04 poster](./docs/demo/clip_04_thumb.jpg)](https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_04.mp4)
-
-https://github.com/jabreeflor/yt-vid-to-shorts/raw/main/docs/demo/clip_04.mp4
+`#mcp` `#mcpserver` `#agentdesign` `#aiengineering` `#shorts`
 
 ## Install
 
@@ -77,7 +61,7 @@ Paste a YouTube URL to Claude along with any of: "make shorts", "clip this", "pu
 
 ```bash
 WORK=./work && mkdir -p "$WORK/clips"
-python3 scripts/fetch.py 'https://www.youtube.com/watch?v=LvseZAGAIjU' "$WORK"
+python3 scripts/fetch.py 'https://www.youtube.com/watch?v=v3Fr2JR47KA' "$WORK"
 python3 scripts/parse_vtt.py "$WORK/captions.vtt" "$WORK/transcript.json"
 # ... write $WORK/proposals.json (see SKILL.md schema) ...
 python3 scripts/cut_clips.py "$WORK/proposals.json" "$WORK/video.mp4" "$WORK/clips"
@@ -107,7 +91,7 @@ yt-vid-to-shorts/
 │   └── serve.py
 ├── assets/
 │   └── gallery.html.template    # editorial / newsprint aesthetic
-└── docs/demo/                   # sample run against the LvseZAGAIjU video
+└── docs/demo/                   # sample run against the MCP talk video
 ```
 
 ## License

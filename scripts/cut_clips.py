@@ -20,6 +20,7 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from typing import Optional
 
 
 CANVAS_W, CANVAS_H = 1080, 1920
@@ -45,7 +46,7 @@ def format_ts(seconds: float) -> str:
     return f"{h:02d}:{m:02d}:{s:06.3f}"
 
 
-def build_video_filter(fit: str, src_w: int, src_h: int) -> str | None:
+def build_video_filter(fit: str, src_w: int, src_h: int) -> Optional[str]:
     """Return the -vf filter string for the requested fit mode, or None to skip."""
     src_ratio = src_w / src_h
     target_ratio = CANVAS_W / CANVAS_H  # 9/16 = 0.5625
